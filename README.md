@@ -1,8 +1,6 @@
-# Airtable -> Google Data Studio Connector
+# Airtable -> Looker Studio Connector
 
-This [Google Data Studio Connector](https://developers.google.com/datastudio/connector) uses the Airtable Metadata\* and Base APIs to fetch a base's list of tables and fields (schema) as well as all records and make them available to Google Data Studio for visualization.
-
-\* Note that the Metadata API is currently available to Airtable Enterprise customers. The Connector will work without the Metadata API, but will not be able to infer data types.
+This [Looker Studio Connector](https://developers.google.com/datastudio/connector) uses the Airtable Metadata and Base APIs to fetch a base's list of tables and fields (schema) as well as all records and make them available to Looker Studio for visualization.
 
 ---
 
@@ -13,9 +11,9 @@ The software made available from this repository is not supported by Formagrid I
 ## Step-by-step guide
 
 To get started, you’ll need:
-- A Google Data Studio account
-- A target base in an Enterprise workspace
-- Your Airtable API key
+- A Looker Studio account
+- A target base in Airtable
+- An Airtable token
 
 You'll need to self-host the connector script in your own Google Scripts account. To do this, follow these five steps:
 
