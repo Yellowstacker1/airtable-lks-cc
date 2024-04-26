@@ -1,12 +1,12 @@
 {
   "dataStudio": {
     "name": "Airtable Connector",
-    "logoUrl": "https://i.imgur.com/y6ZoCXg.png",
-    "company": "Airtable Labs",
-    "companyUrl": "https://www.airtable.com",
-    "addonUrl": "https://github.com/Airtable-Labs/airtable-gds-cc/README.md",
+    "logoUrl": "https://assets-global.website-files.com/65a00537205bdededf59d2e8/65a668b3fd81055cfcd7da51_Logo-YB256x256.png",
+    "company": "Yellow-Br1cks",
+    "companyUrl": "https://www.yellowbr1cks.fr",
+    "addonUrl": "https://github.com/Yellowstacker1/airtable-lks-cc/README.md",
     "supportUrl": "https://github.com/google/datastudio/issues",
-    "description": "Connect your Airtable data to Google Data Studio!",
+    "description": "Connecter vos données avec Looket studio ! Pagination ajoutée.",
     "sources": ["npm"],
     "authType": ["NONE"]
   }
