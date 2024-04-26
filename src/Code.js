@@ -28,27 +28,27 @@ function getConfig() {
   connectorConfig
     .newTextInput()
     .setId("base_id")
-    .setName("Enter a base id");
+    .setName("Entrer l'id de la base");
 
   connectorConfig
     .newCheckbox()
     .setId("enterprise_workspace")
-    .setName("Is the base part of an enterprise workspace?");
+    .setName("Etes-vous certain de vouloir continuer :-) ?");
 
   connectorConfig
     .newTextInput()
     .setId("table_name")
-    .setName("Enter the name of a table");
+    .setName("Entrer le nom de la table");
 
   connectorConfig
     .newTextInput()
     .setId("view_name")
-    .setName("Enter the name of a view");
+    .setName("Entrer le nom de la vue");
 
   connectorConfig
     .newTextInput()
     .setId("airtable_api_key")
-    .setName("Enter your airtable API key");
+    .setName("Entrer le token");
 
   return connectorConfig.build();
 }
@@ -78,7 +78,7 @@ function getFieldType(fieldType) {
     count: types.NUMBER,
     createdBy: types.TEXT,
     createdTime: types.TEXT,
-    currency: types.CURRENCY_USD,
+    currency: types.CURRENCY_EUR,
     date: types.TEXT,
     dateTime: types.TEXT,
     duration: types.DURATION, // todo: figure out AT duration, gds is in seconds
@@ -115,19 +115,25 @@ function getRecords(request) {
   var viewName = request.configParams.view_name;
   var baseId = request.configParams.base_id;
   var apiKey = request.configParams.airtable_api_key;
+  var allRecords = [];
+  var offset;
 
-  var content = fetchData(
-    "https://api.airtable.com/v0/" +
-      baseId +
-      "/" +
-      encodeURI(tableName) +
-      "?view=" +
-      encodeURI(viewName),
-    apiKey
-  );
+  do {
+    var url = "https://api.airtable.com/v0/" + baseId + "/" + encodeURI(tableName) +
+              "?view=" + encodeURI(viewName);
+    if (offset) {
+      url += "&offset=" + offset;
+    }
 
-  var records = JSON.parse(content).records;
-  return records || [];
+    var content = fetchData(url, apiKey);
+    var response = JSON.parse(content);
+
+    allRecords = allRecords.concat(response.records);
+
+    offset = response.offset; 
+  } while (offset);
+
+  return allRecords;
 }
 
 function getFields(request) {
